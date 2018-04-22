@@ -37,7 +37,18 @@
                 </form>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="" data-toggle="modal" data-target="#signin">SignIn</a>
+                        <?php
+                        $this->load->library('session');
+                        if (!isset($_SESSION['logged_in'])) {
+                            echo '<a class="nav-link" href="" data-toggle="modal" data-target="#signin">SignIn</a>';
+                        } else {
+                            if ($_SESSION['logged_in'] === TRUE) {
+                                echo '<a class="nav-link" href="';
+                                echo base_url('index.php/Auth/logout');
+                                echo '">Log out</a>';
+                            }
+                        }
+                        ?>
                     </li>  
                 </ul>
 
@@ -86,10 +97,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url('index.php/Auth/register'); ?>" method="POST">
+                        <form action="<?php echo base_url('index.php/Auth/register'); ?>" method="post">
                             <div class="form-group">
                                 <label for="InputFullName">Full Name</label>
-                                <input type="text" class="form-control" id="InputFullName" placeholder="Enter your name" required="required">
+                                <input type="text" class="form-control" id="InputFullName" name="name" placeholder="Enter your name" required="required">
                             </div>
                             <div class="form-group">
                                 <label for="InputPhone">Phone number</label>
@@ -97,18 +108,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail" required="required">
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter E-mail" required="required">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Create new password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required">
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required="required">
                             </div>
 
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Register"/>
+                        <input type="submit" class="btn btn-primary" name="register" value="Register"/>
                     </div>
                     </form>
                 </div>
