@@ -1,0 +1,22 @@
+datas
+_____
+title 
+description
+price
+mainpic
+thumbnailpic
+side1pic
+side2pic
+
+pros
+____
+unique product id (p_id) is created
+unique names for all pictures (p_id + filename) are created
+
+
+cons
+_____
+no form validation!
+must select 4 pics otherwise error occure!
+
+{javascript form validation is needed to know the accurate picture is selected }

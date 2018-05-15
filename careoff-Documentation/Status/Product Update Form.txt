@@ -1,0 +1,26 @@
+datas
+_____
+
+title
+description
+category
+price
+
+
+cons
+____
+
+product id is passing directly through url
+doesn't show the old description in textarea (value attribute not working with textarea)
+no form validation
+
+
+
+
+delete product 
+______________
+
+cons
+_____
+
+no confirmation (direct deletion on click)
