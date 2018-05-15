@@ -103,7 +103,7 @@ class Home extends CI_Controller
                 $data = array('purchases' => null);
             }
 
-            $this->load->view('customer/shoping-cart-view', $data);
+            $this->load->view('customer/shoping_cart_view', $data);
 
         } else {
             echo "please login to view your cart";
@@ -123,5 +123,10 @@ class Home extends CI_Controller
 
 // ------------------------------------------------------------------------
 
-    
+    public function confirmOrder()
+    {
+        $this->load->view('customer/confirm_order_view');
+
+    }
+
 }
