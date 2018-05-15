@@ -225,10 +225,4 @@ class Dashboard extends CI_Controller
 
 // ------------------------------------------------------------------------
 
-    // testing purpous (to delete)
-    public function viewProduct()
-    {
-        $this->load->view('admin/product_view');
-    }
-
 }

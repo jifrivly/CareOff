@@ -70,7 +70,7 @@ foreach ($purchases as $key) {
 
             <div class="col-md-3 col-sm-12 offset-md-6 text-center">
                 <a href="<?=base_url('/index.php/Home/ConfirmOrder');?>">
-                    <button class="btn btn-lg btn-outline-success px-5 font-weight-bold text-center">&nbsp; Confirm Order &nbsp;</button>
+                    <button class="btn btn-lg btn-outline-primary px-5 font-weight-bold text-center">&nbsp; Confirm Order &nbsp;</button>
                 </a>
             </div>
 
@@ -81,7 +81,7 @@ foreach ($purchases as $key) {
     <?php endif;?>
     <br>
     <a href="<?=base_url();?>">
-        <div class=" clo-lg-12 text-center text-success">
+        <div class=" clo-lg-12 text-center text-info">
             <i class="fas fa-cart-plus fa-5x fa-fw"></i>
             <br>
             <p>Click here purchase more</p>

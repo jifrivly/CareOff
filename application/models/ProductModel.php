@@ -118,7 +118,57 @@ class ProductModel extends CI_Model
         $this->db->delete('purchases');
     }
 
-// ------------------------------- Fuctions to manage categories -----------------------------------------
+// ------------------------------- Functions to manage orders -----------------------------------------
+
+    public function addOrder($var)
+    {
+        $data = array(
+            'order_id' => $this->createOrderID(),
+            'fullname' => $var['fullname'],
+            'phone' => $var['phone'],
+            'country' => $var['country'],
+            'state' => $var['state'],
+            'district' => $var['district'],
+            'city' => $var['city'],
+            'zipcode' => $var['zipcode'],
+            'address' => $var['address'],
+            'email' => $_SESSION['email'],
+        );
+
+        return $this->db->insert('orders', $data);
+    }
+
+// ------------------------------------------------------------------------
+
+    public function createOrderID()
+    {
+        $q = $this->selectOrders();
+
+        $number = $q->num_rows();
+        $number += 10000000;
+
+        do {
+            $number++;
+            $order_id = 'order' . $number;
+        } while ($this->selectOrders($order_id)->num_rows() > 0);
+
+        return $order_id;
+
+    }
+
+// ------------------------------------------------------------------------
+
+    public function selectOrders($var = null)
+    {
+        if ($var == null) {
+            return $this->db->query('SELECT * FROM orders');
+        } else {
+            return $this->db->query("SELECT * FROM orders WHERE order_id = '$var'");
+        }
+
+    }
+
+// ------------------------------- Functions to manage categories -----------------------------------------
 
     public function createCategory($var)
     {

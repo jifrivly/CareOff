@@ -9,6 +9,8 @@ class Home extends CI_Controller
     {
         parent::__construct();
         getCategoryList();
+        $this->load->model('ProductModel');
+
     }
 
 // ------------------------------------------------------------------------
@@ -66,7 +68,6 @@ class Home extends CI_Controller
     public function purchase($p_id)
     {
         if ($this->checkLogin() == 'customer') {
-            $this->load->model('ProductModel');
             $this->ProductModel->purchaseProduct($p_id);
 
             // $this->viewCart();
@@ -83,7 +84,6 @@ class Home extends CI_Controller
     public function viewCart()
     {
         if ($this->checkLogin() == 'customer') {
-            $this->load->model('ProductModel');
 
             $this->load->view('navbar');
 
@@ -115,7 +115,6 @@ class Home extends CI_Controller
 
     public function deletePurchase($var)
     {
-        $this->load->model('ProductModel');
         $this->ProductModel->deletePurchase($var);
 
         redirect('Home/ViewCart', 'refresh');
@@ -125,7 +124,23 @@ class Home extends CI_Controller
 
     public function confirmOrder()
     {
-        $this->load->view('customer/confirm_order_view');
+
+        if ($this->checkLogin() == 'customer') {
+
+            if (isset($_POST['order'])) {
+
+                if ($this->ProductModel->addOrder($_POST)) {
+                    echo "Successfully ordered";
+                } else {
+                    echo "Sorry your order not confirmed go back and try again";
+                }
+            } else {
+                $this->load->view('customer/confirm_order_view');
+            }
+
+        } else {
+            echo "Please login as customer";
+        }
 
     }
 
