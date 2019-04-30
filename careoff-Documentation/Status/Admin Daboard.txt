@@ -1,7 +1,0 @@
-2 Navbar buttons to Add products and categotires
-Showing all products with 
-	main picture,
-	title,
-	description,
-	price  &  
-	update and delete options
